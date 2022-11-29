@@ -110,13 +110,26 @@ void rend_symetrique(feuille *f){
         }
     }
 }
+void ineg_tri(feuille *f){
+    float temp;
+    for(int l = 0; l < TAILLE; l++){
+        for(int c = l+1; c < TAILLE+1; c++){
+            temp = f->tab[l][l+1];
+            if(f->tab[l][c]<temp){
+                f->tab[l][c] +=temp;
+                temp += f->tab[l][c];
+            }
+        }
+    }
+}
 int main(){
     srand(time(NULL));
     feuille f = exemple();
-    afficher(f);
     met_diag_nule(&f);
     rend_tout_positif(&f);
     rend_symetrique(&f);
+    afficher(f);
+    //ineg_tri(&f);
     afficher(f);
     //trier(&f,0);
     //afficher(f);
